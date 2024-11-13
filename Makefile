@@ -1,12 +1,26 @@
 #!/usr/bin/make -f
 export SHELL := /bin/sh -e
 
-.PHONY: build-bcos
-build-bcos:
-	echo "Docker Repository"
-	echo "Trivy Repository"
+ifeq ($(ACTUAL_BRANCH),)
+	ACTUAL_BRANCH := $(shell git describe --exact-match --tags 2> /dev/null)
+endif
+ifeq ($(ACTUAL_BRANCH),)
+	ACTUAL_BRANCH := $(shell git rev-parse --abbrev-ref HEAD 2> /dev/null)
+endif
+ifeq ($(ACTUAL_BRANCH),)
+	ACTUAL_BRANCH := develop
+endif
 
-.PHONY: print-docker-image-tag
-print-docker-image-tag:
-	echo "Docker Repository"
-	echo "Trivy Repository"
+# Strip the "tags/" prefix and convert "/" characters to "-".
+ACTUAL_BRANCH := $(shell echo "${ACTUAL_BRANCH}" | sed 's/^tags\///' | sed 's/\//-/g')
+DOCKER_REPOSITORY := lsybc/ifc-portal-cms-development:base-${ACTUAL_BRANCH}
+IMAGE_TAG := base-${ACTUAL_BRANCH}
+
+.PHONY: docker-repository
+docker-repository:
+	echo ${DOCKER_REPOSITORY}
+
+
+.PHONY: docker-image-tag
+docker-image-tag:
+	echo ${IMAGE_TAG}
