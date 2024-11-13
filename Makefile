@@ -18,8 +18,8 @@ IMAGE_TAG := base-${ACTUAL_BRANCH}
 
 .PHONY: docker-repository
 docker-repository:
-	echo ${DOCKER_REPOSITORY}
+	@echo ${DOCKER_REPOSITORY}
 
 .PHONY: docker-image-tag
 docker-image-tag:
-	echo ${IMAGE_TAG}
+	@echo ${IMAGE_TAG}
