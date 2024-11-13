@@ -11,6 +11,7 @@ jobs:
           echo "Done - bye!"
           echo "DOCKER_IMAGE_TAG=$(make print-docker-image-tag)" >> $GITHUB_ENV
           echo "tag: ${DOCKER_IMAGE_TAG}"
+          make print-docker-image-tag
       - name: Print env from Makefile
         run: |
           echo ${{ env.DOCKER_IMAGE_TAG }}
