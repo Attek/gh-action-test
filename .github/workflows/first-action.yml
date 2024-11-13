@@ -6,5 +6,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Run make
-        run: make build-bcos
+      - name: Show docker-repository
+        run: make docker-repository
+      - name: Show image-tag
+        run: make docker-image-tag
