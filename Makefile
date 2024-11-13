@@ -2,3 +2,7 @@
 export SHELL := /bin/sh -e
 
 export TRIVY_REPOSITORY := lsy-bc/pax-ifc-portal-base
+
+.PHONY: print-docker-image-tag
+print-docker-image-tag:
+	@echo ${TRIVY_REPOSITORY}
