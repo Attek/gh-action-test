@@ -5,4 +5,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run make
-        run: make print-docker-image-tag
+        run: make build-bcos

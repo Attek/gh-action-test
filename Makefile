@@ -1,10 +1,12 @@
 #!/usr/bin/make -f
 export SHELL := /bin/sh -e
 
-TRIVY_REPOSITORY := lsy-bc/pax-ifc-portal-base
-export DOCKER_IMAGE_TAG := megakisfaszom
+.PHONY: build-bcos
+build-bcos:
+	echo "Docker Repository"
+	echo "Trivy Repository"
 
 .PHONY: print-docker-image-tag
 print-docker-image-tag:
-	@echo "Trivy Repository"
-	@echo "Doccker image tag"
+	echo "Docker Repository"
+	echo "Trivy Repository"
