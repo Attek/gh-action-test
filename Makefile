@@ -6,5 +6,5 @@ export DOCKER_IMAGE_TAG := megakisfaszom
 
 .PHONY: print-docker-image-tag
 print-docker-image-tag:
-	@echo ${TRIVY_REPOSITORY}
-	@echo ${DOCKER_IMAGE_TAG}
+	@echo "Trivy Repository"
+	@echo "Doccker image tag"
