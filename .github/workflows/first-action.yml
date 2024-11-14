@@ -13,8 +13,8 @@ jobs:
         id: docker-repository
         run: |
           echo "repo=$(make docker-repository)" >> $GITHUB_OUTPUT
-          run: echo "image=$(make docker-image-tag)" >> $GITHUB_OUTPUT
-        
+          echo "image=$(make docker-image-tag)" >> $GITHUB_OUTPUT
+
   second-job:
     runs-on: ubuntu-latest
     needs: first-job
