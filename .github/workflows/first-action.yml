@@ -48,3 +48,14 @@ jobs:
           echo "Repo: ${{ needs.first-job.outputs.repo }}"
           echo "Tag: ${{ needs.first-job.outputs.tag }}"
           echo "Trivy run: ${{ needs.first-job.outputs.enable_trivy }}"
+
+  third-job:
+    runs-on: ubuntu-latest
+    needs: first-job
+    if: ${{ needs.first-job.outputs.enable_trivy == 'true' }}
+    steps:
+      - name: Show variables if trivy is enabled
+        run: |
+          echo "Repo: ${{ needs.first-job.outputs.repo }}"
+          echo "Tag: ${{ needs.first-job.outputs.tag }}"
+          echo "Trivy run: ${{ needs.first-job.outputs.enable_trivy }}"
