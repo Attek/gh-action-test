@@ -31,7 +31,7 @@ jobs:
       - name: Create repository data
         id: docker-repository
         run: |
-          if [[ "${{ env.branch_or_tag_to_build }}" =~ ^develop|disp-[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?|[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?$ ]]; then
+          if [[ "${{ env.branch_or_tag_to_build }}" =~ ^(develop|disp-[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?|[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?)$ ]]; then
             echo "enable_trivy=true" >> $GITHUB_OUTPUT
           else
             echo "enable_trivy=false" >> $GITHUB_OUTPUT
@@ -52,7 +52,7 @@ jobs:
   third-job:
     runs-on: ubuntu-latest
     needs: first-job
-    if: needs.first-job.outputs.enable_trivy == 'true'&& inputs.build_bcel_image == 'true'
+    if: needs.first-job.outputs.enable_trivy == 'true' && inputs.build_bcel_image == 'true'
     steps:
       - name: Show variables if trivy is enabled
         run: |
