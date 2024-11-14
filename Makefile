@@ -13,8 +13,9 @@ endif
 
 # Strip the "tags/" prefix and convert "/" characters to "-".
 ACTUAL_BRANCH := $(shell echo "${ACTUAL_BRANCH}" | sed 's/^tags\///' | sed 's/\//-/g')
-DOCKER_REPOSITORY := "lsybc/ifc-portal-cms-development"
+DOCKER_REPOSITORY := lsybc/ifc-portal-cms-development
 IMAGE_TAG := base-${ACTUAL_BRANCH}
+DOCKER_IMAGE_TAG := ${DOCKER_REPOSITORY}:${IMAGE_TAG}
 
 .PHONY: docker-repository
 docker-repository:
@@ -23,3 +24,7 @@ docker-repository:
 .PHONY: docker-image-tag
 docker-image-tag:
 	@echo ${IMAGE_TAG}
+
+.PHONY: docker-test
+docker-test:
+	@echo ${DOCKER_IMAGE_TAG}

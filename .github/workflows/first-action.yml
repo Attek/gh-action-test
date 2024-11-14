@@ -12,7 +12,7 @@ jobs:
       - name: Create repository data
         id: docker-repository
         run: |
-          echo "repo=$(make docker-repository)" >> $GITHUB_OUTPUT
+          echo "repo=\"$(make docker-repository)\"" >> $GITHUB_OUTPUT
           echo "image=$(make docker-image-tag)" >> $GITHUB_OUTPUT
 
   second-job:
