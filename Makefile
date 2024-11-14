@@ -13,7 +13,7 @@ endif
 
 # Strip the "tags/" prefix and convert "/" characters to "-".
 ACTUAL_BRANCH := $(shell echo "${ACTUAL_BRANCH}" | sed 's/^tags\///' | sed 's/\//-/g')
-DOCKER_REPOSITORY := ifc-portal-cms-development
+DOCKER_REPOSITORY := "lsybc\/ifc-portal-cms-development"
 IMAGE_TAG := base-${ACTUAL_BRANCH}
 
 .PHONY: docker-repository
