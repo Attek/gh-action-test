@@ -24,8 +24,7 @@ jobs:
     outputs:
       repo: ${{ steps.docker-repository.outputs.repo }}
       tag: ${{ steps.docker-repository.outputs.image }}
-#      enable_trivy: ${{ steps.docker-repository.outputs.enable_trivy }}
-      enable_trivy: ${{ env.enable_trivy }}
+      enable_trivy: ${{ steps.docker-repository.outputs.enable_trivy }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,9 +32,9 @@ jobs:
         id: docker-repository
         run: |
           if [[ "${{ env.branch_or_tag_to_build }}" =~ ^(develop|disp-[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?|[0-9]+\.[0-9]+\.[0-9]+(\.[0-9]+)?)$ ]]; then
-            echo "enable_trivy=true" >> $GITHUB_ENV
+            echo "enable_trivy=true" >> $GITHUB_OUTPUT
           else
-            echo "enable_trivy=false" >> $GITHUB_ENV
+            echo "enable_trivy=false" >> $GITHUB_OUTPUT
           fi
           echo "repo=\"$(make docker-repository)\"" >> $GITHUB_OUTPUT
           echo "image=$(make docker-image-tag)" >> $GITHUB_OUTPUT
@@ -45,7 +44,10 @@ jobs:
     strategy:
       matrix:
         customer: [ disp, os-a320, lh-a320, lx-cont, lx-contint ]
-        environment: [ dev, test ]
+        environment: [ test ]
+      include:
+        - customer: disp
+          environment: dev
     needs: first-job
     steps:
       - name: Show variables
@@ -62,7 +64,7 @@ jobs:
         environment: [dev, test]
     runs-on: ubuntu-latest
     needs: first-job
-    if: needs.first-job.outputs.enable_trivy && inputs.build_bcel_image
+    if: needs.first-job.outputs.enable_trivy == 'true' && inputs.build_bcel_image
     steps:
       - name: Show variables if trivy is enabled
         run: |
