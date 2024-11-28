@@ -45,9 +45,9 @@ jobs:
       matrix:
         customer: [ disp, os-a320, lh-a320, lx-cont, lx-contint ]
         environment: [ test ]
-      include:
-        - customer: disp
-          environment: dev
+        include:
+          - customer: disp
+            environment: dev
     needs: first-job
     steps:
       - name: Show variables
