@@ -17,11 +17,13 @@ env:
   # but if workflow is reused the name of the triggering branch/tag of the main workflow is inherited.
   branch_or_tag_to_build: ${{ inputs.branch_or_tag_to_build != '' && inputs.branch_or_tag_to_build || github.ref_name }}
   trivy_run: true
-  CUSTOMERS: '["disp", "os-a320", "lh-a320", "lx-cont", "lx-contint"]'
+
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    env:
+      CUSTOMERS: '["disp", "os-a320", "lh-a320", "lx-cont", "lx-contint"]'
     outputs:
       repo: ${{ steps.docker-repository.outputs.repo }}
       tag: ${{ steps.docker-repository.outputs.image }}
