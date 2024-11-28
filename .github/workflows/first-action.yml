@@ -41,6 +41,10 @@ jobs:
 
   second-job:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        customer: [ disp, os-a320, lh-a320, lx-cont, lx-contint ]
+        environment: [ dev, test ]
     needs: first-job
     steps:
       - name: Show variables
@@ -48,6 +52,7 @@ jobs:
           echo "Repo: ${{ needs.first-job.outputs.repo }}"
           echo "Tag: ${{ needs.first-job.outputs.tag }}"
           echo "Trivy run: ${{ needs.first-job.outputs.enable_trivy }}"
+          echo "Customer: ${{ matrix.customer }} Enviroment: ${{ matrix.environment }}"
 
   third-job:
     strategy:
