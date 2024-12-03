@@ -16,6 +16,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Print data
         run: |
-          echo "Print if commit push to develop branch"
+          echo "Print if commit push to develop branch:"
+          echo ${{ github }}
           echo ${{ github.ref }}
-          # refs/heads/develop'
