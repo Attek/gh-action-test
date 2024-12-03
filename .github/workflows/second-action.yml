@@ -17,5 +17,5 @@ jobs:
       - name: Print data
         run: |
           echo "Print if commit push to develop branch"
-          echo github.ref
+          echo ${{ github.ref }}
           # refs/heads/develop'
