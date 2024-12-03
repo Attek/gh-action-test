@@ -17,7 +17,7 @@ jobs:
       - name: Print data
         run: |
           echo "Print if commit push to develop branch:"
-          echo ${{ toJSON(github) }}
+          # echo ${{ toJSON(github) }}
           echo ${{ github.ref }}
           # ${{ github.ref == 'refs/heads/develop' }}
           echo ${{ github.event_name }}
