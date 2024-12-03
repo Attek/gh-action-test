@@ -1,4 +1,4 @@
-name: First Workflow
+name: Second Workflow
 on:
   push:
     branches-ignore:
@@ -19,5 +19,5 @@ jobs:
           echo "Print if commit push to develop branch:"
           echo ${{ toJSON(github) }}
           echo ${{ github.ref }}
-          ${{ github.ref == 'refs/heads/develop' }}
+          # ${{ github.ref == 'refs/heads/develop' }}
           echo ${{ github.event_name }}
